@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>X Goal</title>
+<style>
+:root{--bg:#f4f7f5;--card:#fff;--tx:#10201a;--mut:#5d6f67;--ac:#0a8f4f;--gold:#b8860b;--bd:#dbe5df;--red:#c0392b}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1411;--card:#13211b;--tx:#eaf3ee;--mut:#8da399;--ac:#27d17b;--gold:#f2c14e;--bd:#223a2f;--red:#ff6b5b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,sans-serif;max-width:560px;margin:auto;padding:env(safe-area-inset-top,0) 0 90px}
+header{padding:16px}h1{margin:0;font-size:24px;letter-spacing:1px}h1 b{color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:10px 14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mut{color:var(--mut);font-size:13px}.live{color:var(--red);font-weight:700;font-size:12px}
+.score{font-size:20px;font-weight:800}.pick{color:var(--ac);font-weight:700}
+.codes{display:grid;gap:8px;margin-top:10px}
+.code{display:flex;align-items:center;gap:8px;border:1px dashed var(--ac);border-radius:10px;padding:8px}
+.code span{flex:1}.code code{font-weight:800;letter-spacing:2px;color:var(--gold)}
+button,a.btn{border:0;border-radius:9px;padding:8px 11px;font:600 13px system-ui;background:var(--ac);color:#fff;cursor:pointer;text-decoration:none}
+button.o{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+nav{position:fixed;bottom:0;left:0;right:0;max-width:560px;margin:auto;display:flex;background:var(--card);border-top:1px solid var(--bd);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;background:none;color:var(--mut);font-size:12px}nav button.on{color:var(--ac)}
+.vip{border-color:var(--gold)}
+.big{font-size:28px;font-weight:800;color:var(--gold)}
+footer{padding:16px;font-size:11px;color:var(--mut);text-align:center}
+.toast{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:var(--ac);color:#fff;padding:8px 14px;border-radius:20px;display:none}
+</style></head><body>
+<header><h1>X<b>GOAL</b></h1></header>
+<div id="v"></div>
+<footer>18+ only. Tips are opinions, not guaranteed wins. Bet responsibly and never stake money you can’t afford to lose.</footer>
+<nav id="n"></nav><div class="toast" id="t"></div>
+<script>
+var live=[],tips=[],tab="live",links={SportyBet:"https://www.sportybet.com/",Bet9ja:"https://www.bet9ja.com/","1xBet":"https://1xbet.com/"};
+var tabs=[["live","Live"],["tips","Tips"],["vip","VIP"],["rec","Record"]];
+function toast(s){var t=document.getElementById("t");t.textContent=s;t.style.display="block";setTimeout(function(){t.style.display="none"},1800)}
+function cp(c){try{navigator.clipboard.writeText(c).then(function(){toast("Code "+c+" copied")},function(){toast("Code: "+c)})}catch(e){toast("Code: "+c)}}
+function render(){var h="";
+if(tab=="live"){if(!live.length)h+='<div class="card mut">No live matches right now.</div>';live.forEach(function(x){h+='<div class="card"><div class="row"><span>'+x.home+'</span><span class="score">'+x.score+'</span><span>'+x.away+'</span></div><div class="live">● LIVE '+(x.minute||"")+'’</div></div>'})}
+if(tab=="tips"){if(!tips.length)h+='<div class="card mut">No predictions yet.</div>';tips.forEach(function(t){h+='<div class="card"><div class="mut">'+t.m+'</div><div class="row"><span class="pick">'+t.p+'</span><b>@'+t.o+'</b></div><div class="mut">'+t.r+'</div><div class="codes">';
+(t.c||[]).forEach(function(c){h+='<div class="code"><span>'+c[0]+'<br><code>'+c[1]+'</code></span><button class="o" onclick="cp(\''+c[1]+'\')">Copy</button><a class="btn" target="_blank" rel="noopener" href="'+(links[c[0]]||"#")+'" onclick="cp(\''+c[1]+'\')">Open</a></div>'});h+='</div></div>'})}
+if(tab=="vip")h+='<div class="card vip"><div class="mut">X Goal VIP</div><div class="big">Coming soon</div><div class="mut">Premium tips and early codes.</div></div>';
+if(tab=="rec")h+='<div class="card"><div class="mut">Record</div><div class="big">Coming soon</div></div>';
+document.getElementById("v").innerHTML=h;
+document.getElementById("n").innerHTML=tabs.map(function(x){return '<button class="'+(tab==x[0]?"on":"")+'" onclick="tab=\''+x[0]+'\';render()">'+x[1]+'</button>'}).join("")}
+function load(){fetch("/api/live").then(function(r){return r.json()}).then(function(d){live=d;render()}).catch(function(){});
+fetch("/tips.json?"+Date.now()).then(function(r){return r.json()}).then(function(d){tips=d;render()}).catch(function(){})}
+render();load();setInterval(load,60000);
+</script></body></html>
