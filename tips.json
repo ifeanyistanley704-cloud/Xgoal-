@@ -1,9 +1,72 @@
 [
   {
-    "m": "Arsenal vs Chelsea",
-    "p": "Arsenal win & Over 1.5",
-    "o": "1.85",
-    "r": "Strong home form.",
-    "c": [["SportyBet", "A7K2Q9"], ["Bet9ja", "XG4M8P"]]
+    "m": "Atletico Madrid at Levante (Sat 2:00 PM)",
+    "p": "Atletico to score 2+ goals",
+    "o": "TBA",
+    "r": "Strong favourites, but riskier pick.",
+    "c": []
+  },
+  {
+    "m": "Bologna vs Monza (Sat 3:00 PM)",
+    "p": "Bologna to score 2+ goals",
+    "o": "TBA",
+    "r": "Scored 4 last game.",
+    "c": []
+  },
+  {
+    "m": "Schalke vs RB Leipzig (Sat 3:30 PM)",
+    "p": "Leipzig to score 2+ goals",
+    "o": "TBA",
+    "r": "Scored 4 last game.",
+    "c": []
+  },
+  {
+    "m": "Man City vs Brighton (Sat 4:00 PM)",
+    "p": "Man City to score 2+ goals",
+    "o": "TBA",
+    "r": "Home favourites.",
+    "c": []
+  },
+  {
+    "m": "Udinese vs Roma (Sat 6:00 PM)",
+    "p": "Roma to score 2+ goals",
+    "o": "TBA",
+    "r": "Scored 4 last game.",
+    "c": []
+  },
+  {
+    "m": "Tottenham vs Crystal Palace (Sat 6:30 PM)",
+    "p": "Tottenham to score 2+ goals",
+    "o": "TBA",
+    "r": "Home favourites.",
+    "c": []
+  },
+  {
+    "m": "Real Betis vs Malaga (Sat 6:30 PM)",
+    "p": "Betis to score 2+ goals",
+    "o": "TBA",
+    "r": "Big home favourites.",
+    "c": []
+  },
+  {
+    "m": "Bayern Munich vs Dortmund (Sat 6:30 PM)",
+    "p": "Bayern to score 2+ goals",
+    "o": "TBA",
+    "r": "Big home favourites.",
+    "c": []
+  },
+  {
+    "m": "Barcelona vs Alaves (Sat 9:00 PM)",
+    "p": "Barcelona to score 2+ goals",
+    "o": "TBA",
+    "r": "Biggest favourites of the weekend.",
+    "c": []
+  },
+  {
+    "m": "Racing Santander vs Real Madrid (Sun 4:15 PM)",
+    "p": "Real Madrid to score 2+ goals",
+    "o": "TBA",
+    "r": "Big favourites away from home.",
+    "c": []
   }
 ]
